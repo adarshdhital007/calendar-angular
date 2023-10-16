@@ -1,0 +1,63 @@
+<div class="calendar-container">
+  <div class="calendar">
+    <h2>{{ selectedMonth | date : "MMMM yyyy" }}</h2>
+    <div class="month-selector">
+      <select
+        [(ngModel)]="selectedMonthIndex"
+        (ngModelChange)="onMonthChange()"
+      >
+        <option *ngFor="let month of months; let i = index" [ngValue]="i">
+          {{ month }}
+        </option>
+      </select>
+    </div>
+    <div class="table-container">
+      <table>
+        <thead>
+          <tr>
+            <th *ngFor="let day of weekDays">{{ day }}</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let week of calendar">
+            <td
+            *ngFor="let day of week"
+            (click)="showEvents(getDateKey(day))"
+            [ngClass]="{ today: isToday(day) }"
+          >
+              <div class="day-cell">
+                {{ day }}
+                <div *ngIf="events[getDateKey(day)]">
+                  <div class="event-indicator">
+                    <ul class="events">
+                      <li class="eventname" *ngFor="let event of events[getDateKey(day)]">
+                        {{ event.title }}
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="additional-info">
+      <div class="github-info">
+        <a href="https://github.com/adarshdhital007">
+          <img class="image" src="../assets/github.png" alt="GitHub" />
+        </a>
+      </div>
+      <div class="other-info">
+        <h3>Adarsh | dhitaladarsh6@gmail.com</h3>
+      </div>
+    </div>
+  </div>
+</div>
+
+<app-event-details
+  *ngIf="selectedEvent"
+  [event]="selectedEvent"
+  (close)="closeEventDetails()"
+></app-event-details>
