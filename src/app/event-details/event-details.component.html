@@ -1,8 +1,7 @@
 <div class="event-details-popup">
-    <div class="event-details-content">
-      <h3>{{ event.title }}</h3>
-      <p>{{ event.description }}</p>
-      <button (click)="close.emit()">Close</button>
-    </div>
+  <div class="event-details-content">
+    <h3>{{ event?.title }}</h3>
+    <p>{{ event?.description }}</p>
+    <button (click)="close.emit()">Close</button>
   </div>
-  
+</div>
