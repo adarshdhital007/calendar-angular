@@ -21,20 +21,23 @@
         <tbody>
           <tr *ngFor="let week of calendar">
             <td
-            *ngFor="let day of week"
-            (click)="showEvents(getDateKey(day))"
-            [ngClass]="{ today: isToday(day) }"
-          >
-              <div class="day-cell">
-                {{ day }}
-                <div *ngIf="events[getDateKey(day)]">
-                  <div class="event-indicator">
-                    <ul class="events">
-                      <li class="eventname" *ngFor="let event of events[getDateKey(day)]">
-                        {{ event.title }}
-                      </li>
-                    </ul>
-                  </div>
+              *ngFor="let dayInfo of week"
+              [ngClass]="{
+                today: isToday(dayInfo.day),
+                grey: !isDateInCurrentMonth(
+                  dayInfo.day,
+                  dayInfo.isPreviousMonth,
+                  dayInfo.isNextMonth
+                )
+              }"
+            >
+              <div
+                class="day-cell"
+                (click)="dayInfo.event && openEventDetails(dayInfo.event)"
+              >
+                {{ dayInfo.day }}
+                <div *ngIf="dayInfo.event" class="event">
+                  {{ dayInfo.event.title }}
                 </div>
               </div>
             </td>
@@ -42,7 +45,6 @@
         </tbody>
       </table>
     </div>
-
     <div class="additional-info">
       <div class="github-info">
         <a href="https://github.com/adarshdhital007">
@@ -57,7 +59,7 @@
 </div>
 
 <app-event-details
-  *ngIf="selectedEvent"
-  [event]="selectedEvent"
-  (close)="closeEventDetails()"
+  *ngIf="eventDetailsVisible"
+  [event]="selectedEventMain"
+  (close)="eventDetailsVisible = false"
 ></app-event-details>
