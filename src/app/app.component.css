@@ -4,6 +4,10 @@
   text-align: center;
 }
 
+.grey {
+  background-color: #e1e1e1;
+}
+
 .image {
   margin-top: 20px;
   width: 60px;
@@ -45,7 +49,7 @@ td:hover {
   position: relative;
 }
 
-.event-indicator {
+.event {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -54,21 +58,10 @@ td:hover {
   font-weight: 700;
   background-color: red;
   cursor: pointer;
-  border-radius: 50%;
+  border-radius: 10px;
   width: 70px;
   height: 70px;
   margin: 0 auto;
-}
-
-ul.events {
-  list-style: none;
-  padding: 0;
-  text-align: center;
-  margin: 10px 0;
-}
-
-li.eventname {
-  margin: 5px 0;
 }
 
 h2 {
@@ -117,30 +110,19 @@ select option {
 }
 
 @media (max-width: 768px) {
-  .event-indicator {
+
+  .event {
     display: flex;
-    align-items: center;
-    justify-content: center;
     color: white;
-    font-size: 9px;
+    font-size: 7px;
     font-weight: 700;
     background-color: red;
     cursor: pointer;
-    border-radius: 90%;
+    border-radius: 10px;
     width: 50px;
     height: 50px;
   }
 
-  ul.events {
-    list-style: none;
-    padding: 0;
-    text-align: center;
-    margin: 10px 0;
-  }
-
-  li.eventname {
-    margin: 5px 0;
-  }
 
   .calendar {
     font-size: 16px;
@@ -170,10 +152,10 @@ select option {
     max-width: 100%;
   }
 
-  .event-indicator {
+  .event {
     background-color: red;
     cursor: pointer;
-    border-radius: 50%;
+    border-radius: 10px;
     width: 40px;
     height: 40px;
     margin: 0;
@@ -193,15 +175,7 @@ select option {
     padding: 4px;
   }
 
-  .event-indicator {
-    font-size: 10px;
-  }
 
-  ul.events {
-    font-size: 8px;
-    overflow: hidden;
-    text-overflow: ellipsis;
-  }
 }
 
 @media (max-width: 270px) {
@@ -210,7 +184,6 @@ select option {
   }
 
   table {
-
     font-size: 6px;
   }
 
@@ -220,16 +193,17 @@ select option {
   }
 
   th {
-    padding: 2px;
+    padding: 0px;
   }
 
-  .event-indicator {
-    width: 20px;
-    height: 20px;
-  }
-
-  .eventname {
-    font-size: 4px;
+  .event {
+    background-color: red;
+    cursor: pointer;
+    border-radius: 10px;
+    width: 30px;
+    font-size: 5px;
+    height: 30px;
+    margin: 0;
   }
 
   h3 {
